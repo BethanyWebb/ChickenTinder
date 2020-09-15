@@ -25,9 +25,14 @@ if (process.env.NODE_ENV === "production") {
 
 // Gets url from keys, then connects to database unless there's an error
 const db = require("./config/keys").mongoURL;
-mongoose.connect((process.env.MONGODB_URI || db))
-    .then(() => console.log("Connected to database!"))
-    .catch((err) => console.log(err))
+// mongoose.connect((process.env.MONGODB_URI || db))
+//     .then(() => console.log("Connected to database!"))
+//     .catch((err) => console.log(err))
+
+const connection = "mongodb+srv://Bethany:<MongoDB>@chickentinder.zye1m.mongodb.net/<ChickenTinder>?retryWrites=true&w=majority";
+mongoose.connect(connection,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+    .then(() => console.log("Database Connected Successfully"))
+    .catch(err => console.log(err));
 
 // makes passport use the configurations and user routes
 require("./config/passport") (passport)
